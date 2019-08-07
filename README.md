@@ -10,7 +10,7 @@ Norte do Paraná, Maravilha, 2013.
 
 # LISTA DE ABREVIATURAS E SIGLAS
 - AJAX - Asynchronous Javascript and XML (Javascript Assíncrono e XML)
-- - BPM - Batalhão de Polícia Militar
+- BPM - Batalhão de Polícia Militar
 - CSS - Cascading Style Sheets
 - HIBERNATE - Framework para o mapeamento objeto-relacional
 - HTML - HyperText Markup Language (Linguagem de Marcação de Hipertexto)
