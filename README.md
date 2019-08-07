@@ -9,23 +9,23 @@ para Aplicações Web) - Sistema de Ensino Presencial Conectado, Universidade
 Norte do Paraná, Maravilha, 2013.
 
 # LISTA DE ABREVIATURAS E SIGLAS
-AJAX - Asynchronous Javascript and XML (Javascript Assíncrono e XML)
-BPM - Batalhão de Polícia Militar
-CSS - Cascading Style Sheets
-HIBERNATE - Framework para o mapeamento objeto-relacional
-HTML - HyperText Markup Language (Linguagem de Marcação de Hipertexto)
-J2EE - Java 2 Enterprise Edition
-Java - Linguagem de programação orientada a objeto
-Java Script - Linguagem de programação interpretada
-JSF – Java Server Faces
-MVC – Model-View-Controller (modelo de arquitetura de software)
-MySQL - Sistema de Gerenciamento de Banco de Dados
-OO – Orientação a Objeto
-POO – Programação Orientada a Objeto
-PRIMEFACES – Suíte de componentes JSF
-SA - Secretaria Administrativa
-SGBD - Sistema Gerenciador de Banco de Dados
-SPRING - Framework open source para a plataforma Java
-UML - Unified Modeling Language – Linguagem de Modelagem Unificada
-XHTML - Extensible Hypertext Markup Language
-XML - Extensible Markup Language
+- AJAX - Asynchronous Javascript and XML (Javascript Assíncrono e XML)
+- - BPM - Batalhão de Polícia Militar
+- CSS - Cascading Style Sheets
+- HIBERNATE - Framework para o mapeamento objeto-relacional
+- HTML - HyperText Markup Language (Linguagem de Marcação de Hipertexto)
+- J2EE - Java 2 Enterprise Edition
+- Java - Linguagem de programação orientada a objeto
+- Java Script - Linguagem de programação interpretada
+- JSF – Java Server Faces
+- MVC – Model-View-Controller (modelo de arquitetura de software)
+- MySQL - Sistema de Gerenciamento de Banco de Dados
+- OO – Orientação a Objeto
+- POO – Programação Orientada a Objeto
+- PRIMEFACES – Suíte de componentes JSF
+- SA - Secretaria Administrativa
+- SGBD - Sistema Gerenciador de Banco de Dados
+- SPRING - Framework open source para a plataforma Java
+- UML - Unified Modeling Language – Linguagem de Modelagem Unificada
+- XHTML - Extensible Hypertext Markup Language
+- XML - Extensible Markup Language
