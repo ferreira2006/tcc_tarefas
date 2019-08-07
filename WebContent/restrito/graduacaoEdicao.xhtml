@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/interna.xhtml">
+
+	<ui:define name="titulo">
+    Postos e Graduações
+	</ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="listagem">		
+		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+		<h:commandButton action="#{graduacaoBean.novo}" value="Novo Posto/Graduação">
+			<f:setPropertyActionListener target="#{graduacaoBean.destinoSalvar}" value="/p4/graduacaoEdicao"/>
+		</h:commandButton>
+		</sec:ifAnyGranted>
+		
+		<br/>
+			<h:messages/>
+		<br/>	
+			<p:dataTable 
+			scrollable="false" 
+			value="#{graduacaoBean.lista}"
+			var="graduacao" 
+			rowIndexVar="index">
+			
+			<p:column headerText="Reg." style="text-align:left;width:25px;"> #{graduacao.id} </p:column>
+			<p:column headerText="Sigla" style="text-align:left;width:75px;"> #{graduacao.sigla} </p:column>
+			<p:column headerText="Descrição" style="text-align:left;"> #{graduacao.descricao} </p:column>
+						
+			<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+			<p:column style="text-align:center;width:25px;">
+					<h:commandLink action="#{graduacaoBean.editar}" title="Editar">
+						<h:graphicImage library="imagens" name="editar16.png" style="border:0"/>
+						<f:setPropertyActionListener target="#{graduacaoBean.graduacao}" value="#{graduacao}"/>
+						<f:setPropertyActionListener target="#{graduacaoBean.destinoSalvar}" value="/restrito/graduacaoEdicao"/>
+					</h:commandLink>
+				</p:column>
+				
+				<p:column style="text-align:center;width:25px;">
+					<h:commandLink action="#{graduacaoBean.excluir}" title="Excluir" onclick="if (!confirm('Deseja mesmo excluir #{graduacao.descricao}?')) return false;">
+						<h:graphicImage library="imagens" name="excluir16.png" style="border:0"/>
+						<f:setPropertyActionListener target="#{graduacaoBean.graduacao}" value="#{graduacao}"/>
+						<f:setPropertyActionListener target="#{graduacaoBean.destinoSalvar}" value="/restrito/graduacaoEdicao"/>
+					</h:commandLink>
+				</p:column>
+			</sec:ifAnyGranted>
+			</p:dataTable>			
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

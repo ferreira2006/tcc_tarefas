@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="/templates/interna.xhtml">
+
+	<ui:define name="titulo">
+    	Cadastro de Postos e Graduações
+	</ui:define>
+
+	<ui:define name="corpo">
+
+		<h:form id="cadastro">
+			<h:messages />
+		    <h:inputHidden value="#{graduacaoBean.graduacao.id}" /> 			
+			<h:inputHidden value="#{graduacaoBean.destinoSalvar}" />
+
+
+			<h:panelGrid columns="2">
+
+			<h:outputLabel value="Descricao" for="descricao"/>				
+				<h:inputText id="descricao" label="Descrição da graduacao"
+					value="#{graduacaoBean.graduacao.descricao}" required="true" size="50"
+					maxlength="100" requiredMessage="A descrição é obrigatória!">
+					<f:validateLength minimum="2" maximum="100" />
+				</h:inputText>
+				
+				<h:outputLabel value="Sigla" for="sigla"/>				
+				<h:inputText id="sigla" label="Sigla da graduacao"
+					value="#{graduacaoBean.graduacao.sigla}" required="true" size="25"
+					maxlength="100" requiredMessage="A sigla é obrigatória!">
+					<f:validateLength minimum="2" maximum="50" />
+				</h:inputText>
+				
+				<!-- Usado apenas para ocupar a primeira celula da ultima linha -->
+				<h:outputText />
+				<h:commandButton action="#{graduacaoBean.salvar}" value="Salvar" />
+
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

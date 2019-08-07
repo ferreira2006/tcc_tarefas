@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/interna.xhtml">
+
+<ui:define name="titulo">
+    	Cadastro de Usuários
+	</ui:define>
+
+	<ui:define name="corpo">
+ 
+		<h:form id="cadastro">
+			<p:messages />
+			<h:inputHidden value="#{usuarioBean.usuario.id}" />
+			<h:inputHidden value="#{usuarioBean.usuario.ativo}" />
+			<h:inputHidden value="#{usuarioBean.destinoSalvar}" />
+			<h:inputHidden value="#{usuarioBean.senhaCriptografada}" />
+			<h:inputHidden value="#{usuarioBean.edicao}" />
+
+				<p:fieldset>
+					<legend>Identificação:</legend>
+					<br/>
+					<h:panelGrid columns="1" width="100%">
+					
+						<p:outputLabel value="Nome:" for="nome" />						
+						<p:inputText id="nome" label="Nome completo" 
+							value="#{usuarioBean.usuario.nome}" required="true" size="30"
+							maxlength="100" requiredMessage="O nome é obrigatório!">
+							<f:validateLength minimum="3" maximum="100" />
+						</p:inputText>
+
+						<p:outputLabel value="e-Mail:" for="email" />						
+							<p:inputText id="email" label="Email - Será usado como login"
+								value="#{usuarioBean.usuario.email}" size="30" maxlength="50"
+								required="true" validatorMessage="Formato inválido"
+								requiredMessage="O email é obrigatório!">
+								<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
+							</p:inputText>
+							
+							<p:outputLabel value="Data Nasc.:" for="dataNasc" />							
+								<p:calendar value="#{usuarioBean.usuario.dataNasc}" 
+									locale="pt_BR" showButtonPanel="true" navigator="true" 
+									id="dataNasc" size="15" required="false" tittle="Data de Aniversário">
+								<h:outputScript name="primefaces-locale.js" library="js" />
+								<p:watermark for="dataNasc" value="Selecione..." />														
+								</p:calendar>
+								
+						<p:outputLabel value="Graduação:" for="graduacao" />
+						<p:selectOneMenu id="graduacao"
+							value="#{usuarioBean.usuario.graduacao}"
+							converter="converterGraduacao" required="true">
+							<f:selectItem itemLabel="Selecione" />
+							<f:selectItems value="#{graduacaoBean.lista}" var="c"
+								itemValue="#{c}" itemLabel="#{c.descricao}" />
+						</p:selectOneMenu>
+						
+					</h:panelGrid>
+				</p:fieldset>
+			
+			<br/>
+
+			<br/>
+			<p:fieldset>
+				<h:outputText rendered="#{usuarioBean.edicao}"
+					value="Informe caso queira mudar a senha" />
+				<h:panelGrid columns="2" cellpadding="10">
+					<p:outputLabel value="Senha:" for="senha" />
+					<p:password id="senha" label="Senha"
+						value="#{usuarioBean.usuario.senha}" size="10" maxlength="10"
+						required="false" redisplay="false" />
+
+					<p:outputLabel value="Repita a Senha:" for="confirmarSenha" />
+					<p:password id="confirmarSenha" label="Repita a senha "
+						value="#{usuarioBean.confirmarSenha}" size="10" maxlength="10"
+						required="false" redisplay="false" />
+
+				</h:panelGrid>
+				
+				<h:commandButton id="salvar" action="#{usuarioBean.salvar}" value="Salvar" />
+			</p:fieldset>		
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

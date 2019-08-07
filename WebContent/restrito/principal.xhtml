@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/principal.xhtml">
+
+	<ui:define name="titulo"> MISSÃO CUMPRIDA - Usuario logado: #{request.remoteUser} </ui:define>
+	
+	<ui:define name="corpo">							
+		<p:panelGrid columns="2" width="100%"  styleClass="semBorda" columnClasses="topAligned">		
+		
+		<h:panelGroup style="vertical-align:top">
+		
+		<fieldset >
+		<center>
+			<br/>																
+					<p><b>MISSÃO CUMPRIDA</b></p>					
+					<p style="width:500px;">
+					Aplicativo Web com tecnologias JAVA
+					para Gerenciamento de missões (tarefas)
+					relizadas junto à Secretaria Administrativa
+					do 11º BPM de São Miguel do Oeste. 
+					</p>									    		
+    		</center>
+			</fieldset>
+			<br/>
+			
+			<center>	
+			<fieldset >
+						
+			<br/>	
+						
+				<legend>Calendário</legend>
+				<h:outputScript name="primefaces-locale.js" library="js" /> 
+    			<p:calendar locale="pt_BR" mode="inline" showButtonPanel="true" navigator="true" id="ptCal"/>
+    		    											
+    		<br/>
+    		 		
+			</fieldset>
+			</center>   
+			
+			<br/>
+			<center>
+			<fieldset>
+				11º Batalhão de polícia Militar - Rua Vinte e Um de Abril, 1687, Centro - São Miguel do Oeste - (49) 3622-6335
+			</fieldset>
+			</center>							
+		</h:panelGroup>
+		
+		
+		</p:panelGrid>
+		     
+		
+	</ui:define>
+</ui:composition>
+</html>

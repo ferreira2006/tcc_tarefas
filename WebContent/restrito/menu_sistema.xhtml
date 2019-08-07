@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<sec:ifAnyGranted roles="ROLE_USUARIO">
+		<h:form id="menu">
+			<p:growl id="messages" />
+			
+		<p:stack icon="/resources/imagens/cesta.png">  
+    		<p:menuitem value="Home" icon="/resources/imagens/Mhome.png" url="../restrito/principal.jsf"/>
+    		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+    			<p:menuitem value="Graduações" icon="/resources/imagens/Muser.png" url="../restrito/graduacaoEdicao.jsf"/>   					
+   				<p:menuitem value="Usuário" icon="/resources/imagens/Muser.png" url="../admin/usuarioEdicao.jsf"/>   		 
+   		 	</sec:ifAnyGranted>
+   		 	<p:menuitem value="Missões" icon="/resources/imagens/Mmissao.png" url="../restrito/missaoEdicao.jsf"/>   		 
+   			<p:menuitem value="Sair" title="Sair" icon="/resources/imagens/Msair.png" url="#" 
+   			onclick="document.location='#{request.contextPath}/j_spring_security_logout'" />
+		</p:stack>  
+			
+			<!-- <p:menubar autoSubmenuDisplay="true">  			
+		 		<p:menuitem value="Home" url="../restrito/principal.jsf">  </p:menuitem>		 						 		 		
+		 		<p:menuitem value="Cadastro de Missões" url="../restrito/principal.jsf">  </p:menuitem>
+		 		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">		 		
+		 			<p:menuitem value="Cadastro de usuários" url="../admin/usuarioEdicao.jsf">  </p:menuitem>
+		 		</sec:ifAnyGranted>
+		 		<p:menuitem value="Sair" title="Sair" onclick="document.location='#{request.contextPath}/j_spring_security_logout'" />		 		    		          		                  	
+			</p:menubar> -->
+			
+		</h:form>
+	</sec:ifAnyGranted>
+</ui:composition>
+</html>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/interna.xhtml">
+
+	<ui:define name="titulo"> Missões </ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="listagem">	
+		<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+			<h:commandButton action="/restrito/missao" value="Nova Missão">		
+				<f:setPropertyActionListener target="#{missaoBean.destinoSalvar}" value="/restrito/missaoEdicao"/>
+				<f:setPropertyActionListener target="#{missaoBean.missao.ativo}" value="true"/>
+			</h:commandButton>
+		</sec:ifAnyGranted>
+		
+		<br/>
+			<h:messages/>
+		<br/>
+			<p:dataTable 
+			scrollable="false" 
+			value="#{missaoBean.lista}"
+			var="missao" 
+			rowIndexVar="index"
+			emptyMessage="Não há missões pendentes!">
+			
+				<p:column headerText="Código" style="text-align:center;width:25px;"> #{missao.id} </p:column>				
+				<p:column headerText="Chefe" style="width:250px;"> #{missao.chefe.nome} </p:column>				
+				<p:column headerText="Auxiliar" style="width:250px;"> #{missao.auxiliar.nome} </p:column>
+				<p:column headerText="Assunto"> #{missao.assunto} </p:column>
+				
+				<p:column style="text-align:center;width:25px;">
+					<h:commandLink action="#{missaoBean.editar}" title="Editar Missão">
+						<h:graphicImage library="imagens" name="editar16.png" style="border:0"/>
+						<f:setPropertyActionListener target="#{missaoBean.missao}" value="#{missao}"/>
+						<f:setPropertyActionListener target="#{missaoBean.destinoSalvar}" value="/restrito/missaoEdicao"/>
+					</h:commandLink>
+				</p:column>
+				
+				<sec:ifAnyGranted roles="ROLE_ADMINISTRADOR">
+					
+				
+				<p:column style="text-align:center;width:25px;">
+				<h:commandLink action="#{missaoBean.desativar}" title="Encerrar Missão" >
+					<h:graphicImage library="imagens" name="excluir16.png" style="border:0"/>
+					<f:setPropertyActionListener target="#{missaoBean.missao}" value="#{missao}"/>						
+				</h:commandLink>
+				</p:column>
+				
+				
+				</sec:ifAnyGranted>
+					
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

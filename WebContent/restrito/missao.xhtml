@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/interna.xhtml">
+
+<ui:define name="titulo">
+    	Cadastro de Missões
+	</ui:define>
+
+	<ui:define name="corpo">
+ 
+		<h:form id="cadastro">
+			<p:messages />
+			<h:inputHidden value="#{missaoBean.missao.id}" />
+			<h:inputHidden value="#{missaoBean.missao.ativo}" />
+			<h:inputHidden value="#{missaoBean.destinoSalvar}" />
+			<h:inputHidden value="#{missaoBean.edicao}" />
+
+				<p:fieldset>
+					<legend>Dados da Missão:</legend>
+					<br/>
+					<h:panelGrid columns="1" width="100%">
+					
+						<p:outputLabel value="Assunto:" for="assunto" />						
+						<p:inputText id="assunto" label="Assunto da Missão" 
+							value="#{missaoBean.missao.assunto}" required="true" size="30"
+							maxlength="50" requiredMessage="O assunto é obrigatório!">
+							<f:validateLength minimum="3" maximum="250" />
+						</p:inputText>
+							
+						<p:outputLabel value="Conteúdo:" for="conteudo" />						
+						<p:inputTextarea rows="5" cols="100" id="conteudo" label="Conteúdo da Missão" 
+							value="#{missaoBean.missao.conteudo}" size="30" maxlength="250">
+							<f:validateLength minimum="3" maximum="250" />
+						</p:inputTextarea>
+
+
+						
+						<p:outputLabel value="Providências:" for="prov" />						
+						<p:inputTextarea rows="5" cols="100" id="prov" label="providências da Missão" 
+							value="#{missaoBean.missao.providencias}" size="30" maxlength="250">
+							<f:validateLength minimum="3" maximum="250" />
+						</p:inputTextarea>
+						
+						
+						<p:outputLabel value="Auxiliar:" for="aux" />
+						<p:selectOneMenu id="aux"
+							value="#{missaoBean.missao.auxiliar}"
+							converter="converterUsuario" required="true">
+							<f:selectItem itemLabel="Selecione" />
+							<f:selectItems value="#{usuarioBean.lista}" var="c"
+								itemValue="#{c}" itemLabel="#{c.nome}" />
+						</p:selectOneMenu>
+						
+						
+					</h:panelGrid>
+				</p:fieldset>
+			
+			<br/>
+			<p:fieldset>	
+				<h:commandButton id="salvar" action="#{missaoBean.salvar}" value="Salvar">
+				<f:setPropertyActionListener target="#{missaoBean.missao.ativo}" value="true"/>
+				</h:commandButton>
+			</p:fieldset>		
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

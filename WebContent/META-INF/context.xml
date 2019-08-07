@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context reloadable="true">
+	<Resource name="jdbc/MissaoDB" 
+				auth="Container" 
+				type="javax.sql.DataSource"
+				maxActive="50" 
+				maxIdle="2" 
+				maxWait="10000"
+				removeAbandoned="true"
+				removeAbandonedTimeout="60"
+				logAbandoned="true"
+				validationQuery="SELECT 1"
+				testOnBorrow="true"
+				username="root" 
+				password="lisarb"
+				driverClassName="com.mysql.jdbc.Driver"
+				url="jdbc:mysql://localhost:3306/missaodb?autoReconnect=true" />
+</Context>

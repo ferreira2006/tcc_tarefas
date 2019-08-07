@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="/templates/interna.xhtml">
+
+	<ui:define name="titulo"> Área Administrativa </ui:define>
+
+	<ui:define name="corpo">
+		<h:form id="listagem">	
+		<h:commandButton action="/admin/usuario" value="Novo Usuário">
+			<f:setPropertyActionListener target="#{usuarioBean.destinoSalvar}" value="/admin/usuarioEdicao"/>
+			<f:setPropertyActionListener target="#{usuarioBean.usuario.ativo}" value="true"/>
+		</h:commandButton>
+		
+		<br/>
+			<h:messages/>
+		<br/>
+			<p:dataTable 
+			scrollable="false" 
+			value="#{usuarioBean.lista}"
+			var="usuario" 
+			rowIndexVar="index">
+			
+				<p:column>
+					<h:commandLink action="#{usuarioBean.ativar}">
+						<h:graphicImage library="imagens" name="usuario_ativo_#{usuario.ativo}.png" style="border:0"/>
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}"/>
+					</h:commandLink>
+				</p:column>
+			
+				<p:column>
+					<f:facet name="header">Código</f:facet>
+					<h:outputText value="#{usuario.id}" />
+				</p:column>
+				
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">e-Mail</f:facet>
+					<a href="mailto:#{usuario.email}">#{usuario.email}</a>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Permissões</f:facet>
+					<h:commandLink action="#{usuarioBean.atribuiPermissao(usuario, 'ROLE_ADMINISTRADOR')}" title="Permissão Administrador">
+					<h:graphicImage library="imagens" name="ROLE_ADMINISTRADOR_#{usuario.permissao.contains('ROLE_ADMINISTRADOR')}.png" style="border:0"/>
+					</h:commandLink>
+					
+				</p:column>
+				<p:column>
+					<h:commandLink action="#{usuarioBean.editar}">
+						<h:graphicImage library="imagens" name="editar16.png" style="border:0"/>
+						<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}"/>
+						<f:setPropertyActionListener target="#{usuarioBean.destinoSalvar}" value="/admin/usuarioEdicao"/>
+					</h:commandLink>
+				</p:column>
+						
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

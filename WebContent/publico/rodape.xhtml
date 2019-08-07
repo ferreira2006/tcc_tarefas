@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:sec="http://www.springframework.org/security/facelets/tags"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition>
+
+<h:form>  
+  
+  <p:growl id="messages" />  
+  
+  <p:toolbar >  
+    <p:toolbarGroup align="left">    
+    <p:commandButton type="button" title="Fechar o programa" icon="ui-icon-power" onclick="document.location='#{request.contextPath}/j_spring_security_logout'"/>
+    </p:toolbarGroup>  
+  
+    <p:toolbarGroup align="right">               	
+       <p:commandButton type="button" title="Ir para o topo da pagina" icon="ui-icon-circle-arrow-n" onclick="parent.scrollTo(0,0);"/>                       
+    </p:toolbarGroup>
+    
+     <p:toolbarGroup align="center">    
+        <h:outputLabel value="MISSÃO CUMPRIDA - Gerenciamento de Missões do 11º BPM" />  
+  </p:toolbarGroup>  
+  
+  </p:toolbar>  
+</h:form>  
+
+</ui:composition>
+</html>
